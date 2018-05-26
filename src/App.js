@@ -205,6 +205,36 @@ function inOrderTraverse(tree) {
 	inOrderTraverse(tree.right)
 };
 
+function BfsTraverse(tree, queue, visited) {
+	if (tree == null && queue.length == 0)
+		return
+
+	setTimeout(function () {
+		tree.node.circle.strokeColor = 'red';
+		view.update()
+	}, 750 * (time++));
+
+	if (tree.left && !visited[tree.left.node.text._id]) {
+		queue.push(tree.left);
+	}
+
+	if (tree.right && !visited[tree.right.node.text._id]) {
+		queue.push(tree.right);
+	}
+
+	setTimeout(function () {
+		tree.node.circle.fillColor = 'black';
+		tree.node.text.fillColor = 'red';
+		document.getElementById("bfsorder").innerHTML += tree.element + ' ';
+		view.update()
+	}, 750 * (time++));
+
+	visited[tree.node.text._id] = true;
+	let q = queue.shift();
+
+	BfsTraverse(q, queue, visited);
+};
+
 
 
 class App extends Component {
