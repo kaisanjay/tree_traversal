@@ -235,6 +235,25 @@ function BfsTraverse(tree, queue, visited) {
 	BfsTraverse(q, queue, visited);
 };
 
+function preOrderTraverse(tree) {
+	if (tree == null)
+		return
+
+	setTimeout(function () {
+		tree.node.circle.strokeColor = 'red';
+		view.update()
+	}, 750 * (time++));
+
+	setTimeout(function () {
+		tree.node.circle.fillColor = 'black';
+		tree.node.text.fillColor = 'red';
+		document.getElementById("preorder").innerHTML += tree.element + ' ';
+		view.update()
+	}, 750 * (time++));
+
+	preOrderTraverse(tree.left)
+	preOrderTraverse(tree.right)
+};
 
 
 class App extends Component {
