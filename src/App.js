@@ -292,6 +292,13 @@ window.postOrder = function () {
 
 
 class App extends Component {
+	componentDidMount() {
+		new VisualTree(tree, false)
+	}
+
+	handleChange = (event) => {
+		nodes = event.target.value;
+	}
 	
 	render() {
 		return (
