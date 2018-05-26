@@ -43,6 +43,72 @@ function createTree(nodes) {
 	return tree;
 };
 
+/*
+var tree = new BinaryTree(1); 
+tree.left  = new BinaryTree(2);
+tree.right = new BinaryTree(3);
+
+tree.printPreOrder(tree)
+*/
+let nodes = [1, [2, 4, 5],
+	[3, "x", "y"]
+];
+
+let tree = createTree(nodes);
+// new VisualTree(tree, false)
+//deleteTreeVisual(tree2)
+
+//var v2 = new VisualTree(createTree(JSON.parse('[1, 2, [3, 6, 7] ]')), true) 
+
+//var v = new VisualTree(createTree('[1, [2,[4,'x','y'],[5,9,[1,'s','t']]], [3,[6,[1,'o','m'],2],7] ]'), 'myCanvas2')
+/********************** Visual Representation Part   *****************/
+
+function VisualTree(tree, animation) {
+
+	let origin = [400, 25];
+	let height = getHeight(tree);
+
+	paper.setup("myCanvas");
+	document.getElementById("myCanvas").height = height * 60 + 10;
+
+	function BinaryNode(tree, depth, x) {
+		let pos = new Point(origin[0] + x * height * 40, origin[1] + depth * 60)
+
+		function drawEdge(pos1, pos2) {
+			return new Path.Line({
+				from: pos1,
+				to: pos2,
+				strokeColor: 'black',
+				strokeWidth: 2
+			}).sendToBack()
+		};
+
+		if (tree.left) // if left exists, the right child also exists
+			this.leftEdge = drawEdge(pos, pos.add([-(1 / Math.pow(2, depth)) * height * 40, 60]))
+		if (tree.right)
+			this.rightEdge = drawEdge(pos, pos.add([(1 / Math.pow(2, depth)) * height * 40, 60]))
+
+		this.circle = new Path.Circle({
+			radius: 20,
+			strokeWidth: 2,
+			fillColor: 'white',
+			strokeColor: 'black',
+			center: pos
+		});
+		this.text = new PointText({
+			position: new Point(pos.x - 8, pos.y + 10),
+			fontSize: '30px',
+			fillColor: 'black',
+			content: '' + tree.element
+		});
+		this.text.bringToFront();
+
+		view.update();
+	};
+
+
+	
+
 class App extends Component {
 	
 	render() {
