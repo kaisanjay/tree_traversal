@@ -155,6 +155,37 @@ function deleteTreeVisual(tree) {
 	view.update()
 };
 
+window.evaluate = function () {
+	let exp = document.getElementById("expression").value;
+	tree = createTree(JSON.parse(exp));
+	new VisualTree(tree, false)
+
+	document.getElementById("inorder").innerHTML = '';
+	document.getElementById("preorder").innerHTML = '';
+	document.getElementById("postorder").innerHTML = '';
+};
+
+function postOrderTraverse(tree) {
+	if (tree == null)
+		return
+
+	setTimeout(function () {
+		tree.node.circle.strokeColor = 'red';
+		view.update()
+	}, 750 * (time++));
+
+	postOrderTraverse(tree.left)
+	postOrderTraverse(tree.right)
+
+	setTimeout(function () {
+		tree.node.circle.fillColor = 'black';
+		tree.node.text.fillColor = 'red';
+		document.getElementById("postorder").innerHTML += tree.element + ' ';
+
+		view.update()
+	}, 750 * (time++));
+};
+
 class App extends Component {
 	
 	render() {
