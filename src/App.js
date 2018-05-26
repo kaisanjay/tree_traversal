@@ -124,7 +124,36 @@ function VisualTree(tree, animation) {
 		drawPreOrder(tree.right, depth + 1, x + (1 / Math.pow(2, depth)))
 	};
 
-	
+	function getHeight(tree) {
+		if (tree == null)
+			return 0;
+
+		return Math.max(getHeight(tree.left) + 1, getHeight(tree.right) + 1)
+	};
+
+	drawPreOrder(tree, 0, 0)
+};
+
+let time = 0;
+
+function deleteTreeVisual(tree) {
+	if (tree == null)
+		return;
+
+	deleteTreeVisual(tree.left);
+	deleteTreeVisual(tree.right);
+
+	if (tree.node.leftEdge)
+		tree.node.leftEdge.remove();
+
+	if (tree.node.rightEdge)
+		tree.node.rightEdge.remove();
+
+	tree.node.circle.remove();
+	tree.node.text.remove();
+
+	view.update()
+};
 
 class App extends Component {
 	
