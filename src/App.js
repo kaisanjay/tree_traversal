@@ -255,6 +255,41 @@ function preOrderTraverse(tree) {
 	preOrderTraverse(tree.right)
 };
 
+window.bfsOrder = function () {
+	let queue = [];
+	let visite = [];
+	document.getElementById("bfsorder").innerHTML = '';
+	deleteTreeVisual(tree)
+	new VisualTree(tree, false)
+
+	time = 0;
+	BfsTraverse(tree, queue, visite);
+};
+
+window.preOrder = function () {
+	document.getElementById("preorder").innerHTML = '';
+	deleteTreeVisual(tree)
+	new VisualTree(tree, false)
+	time = 0;
+	preOrderTraverse(tree);
+};
+
+window.inOrder = function () {
+	document.getElementById("inorder").innerHTML = '';
+	deleteTreeVisual(tree)
+	new VisualTree(tree, false)
+	time = 0;
+	inOrderTraverse(tree);
+};
+
+window.postOrder = function () {
+	document.getElementById("postorder").innerHTML = ''
+	deleteTreeVisual(tree)
+	new VisualTree(tree, false)
+	time = 0;
+	postOrderTraverse(tree);
+};
+
 
 class App extends Component {
 	
