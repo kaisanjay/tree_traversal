@@ -12,6 +12,13 @@ import {
 
 paper.install(window)
 
+function BinaryTree(el) {
+	this.element = el;
+	this.left = null;
+	this.right = null;
+	this.node = null;
+}
+
 class App extends Component {
 	
 	render() {
