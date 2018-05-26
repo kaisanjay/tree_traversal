@@ -19,6 +19,30 @@ function BinaryTree(el) {
 	this.node = null;
 }
 
+function createTree(nodes) { 
+	// it is kind of preorder style, because we have node itself first then its children
+	function datum(tree) {
+		return tree[0]
+	};
+
+	function leftChild(tree) {
+		return tree[1]
+	};
+
+	function rightChild(tree) {
+		return tree[2]
+	};
+
+	if (nodes == null)
+		return null;
+
+	let tree = new BinaryTree(datum(nodes) || nodes);
+	tree.left = createTree(leftChild(nodes));
+	tree.right = createTree(rightChild(nodes));
+
+	return tree;
+};
+
 class App extends Component {
 	
 	render() {
