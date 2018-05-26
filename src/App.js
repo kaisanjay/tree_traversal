@@ -106,6 +106,23 @@ function VisualTree(tree, animation) {
 		view.update();
 	};
 
+	let t = 0
+	
+	function drawPreOrder(tree, depth, x) { 
+		// depth: depth of the current node, x: x-coordinate of the current node
+		if (tree == null)
+			return
+
+		if (animation)
+			setTimeout(function () {
+				tree.node = new BinaryNode(tree, depth, x);
+			}, 500 * (t++));
+		else
+			tree.node = new BinaryNode(tree, depth, x);
+
+		drawPreOrder(tree.left, depth + 1, x - (1 / Math.pow(2, depth)))
+		drawPreOrder(tree.right, depth + 1, x + (1 / Math.pow(2, depth)))
+	};
 
 	
 
