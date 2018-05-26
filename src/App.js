@@ -186,6 +186,27 @@ function postOrderTraverse(tree) {
 	}, 750 * (time++));
 };
 
+function inOrderTraverse(tree) {
+	if (tree == null)
+		return
+
+	setTimeout(function () {
+		tree.node.circle.strokeColor = 'red';
+		view.update()
+	}, 750 * (time++));
+
+	inOrderTraverse(tree.left)
+	setTimeout(function () {
+		tree.node.circle.fillColor = 'black';
+		tree.node.text.fillColor = 'red';
+		document.getElementById("inorder").innerHTML += tree.element + ' ';
+		view.update()
+	}, 750 * (time++));
+	inOrderTraverse(tree.right)
+};
+
+
+
 class App extends Component {
 	
 	render() {
